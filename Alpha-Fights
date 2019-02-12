@@ -1,0 +1,99 @@
+import random
+import time, threading
+
+def start():
+	class Hero:
+		def __init__(self, name: str, id: int, race: str, health: int, atk: int, mp: int, heal: int):
+			self.name = name
+			self.id = id
+			self.race = race
+			self.health = health
+			self.atk = atk
+			self.mp = mp
+			self. heal = heal
+		
+	Human = Hero('Arthas', 1, 'Human', 100, 2, 7, 1)
+
+	Orc = Hero('Urk-hai', 2, 'Orc', 100, 10, 1, 0)
+
+
+	game_start = True
+	
+	hero_moves = {'Punch': Human.atk, 'Fireball': Human.mp, 'Holy Heal': Human.heal}
+	villain_moves = {'Sword Slash': Orc.atk, 'Bulk Up': Orc.mp}
+	
+
+	while game_start:
+		winner = None
+		hero_health = Human.health
+		villain_health = Orc.health
+		turn = random.randint(1,2)
+		
+		if turn == 1:
+			hero_turn = True
+			villain_turn = False
+		else:
+			hero_turn = False 
+			villain_turn = True
+		
+		while hero_health != 0 or villain_health != 0:
+	   		heal = False
+	   		miss = False
+			if hero_turn == True:
+				hero_move = input('> ')lower
+				move_miss = random.randint(1,5)
+				if move_miss == 1:
+					miss = True
+				else:
+					miss = False
+				if miss:
+					hero_move = 0
+				else:
+					if hero_move in ('1', 'Punch'):
+						hero_move = hero_moves['Punch']
+					elif hero_move in ('2', 'Fireball'):
+						hero_move = hero_moves['Fireball']
+					elif hero_move in ('3', 'Holy Heal'):
+						heal = True
+						hero_move = hero_moves['Holy Heal']
+					else:
+						continue
+						
+			else:
+				move_miss = random.randint(1,5)
+				if move_miss == 1:
+					miss = True
+				else:
+					miss = False
+				if miss:
+					villain_move = 0
+				else:
+					imoves = ['Bulk Up', 'Sword Slash']
+					imoves = random.choice(imoves)
+					villain_move = moves[imoves]
+					if villain_move == 'Bulk Up':
+						Orc.atk = Orc.atk + Orc.mp
+						villain.move = 0
+			if heal == True:
+           		if hero_health += hero_move:
+			   		if hero_health > 100:
+					   	hero_health = 100
+			else:
+				if hero_turn:
+					villain_health -= hero_move
+					if villain_health < 0:
+						villain_health = 0
+						winner = 'Hero'
+						break
+				else:
+					hero_health -= villain_move
+					if hero_health < 0:
+						villain_health = 0
+						winner = 'Villain'
+						break
+						
+			hero_turn = not villain_turn
+			villain_turn = not hero_turn
+			
+	
+start()
